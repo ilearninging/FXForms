@@ -1624,9 +1624,10 @@ static void FXFormPreprocessFieldDictionary(NSMutableDictionary *dictionary)
 {
     [self.fields removeObjectAtIndex:index];
     [self.values removeObjectAtIndex:index];
-    for (NSUInteger i = index; i < [self.values count]; i++)
+    //fix bugs out of bound
+    for (NSUInteger i = 0; i < [self.values count]; i++)
     {
-        self.fields[index][FXFormFieldKey] = [@(i) description];
+        self.fields[i][FXFormFieldKey] = [@(i) description];
     }
     [self updateFormValue];
 }
